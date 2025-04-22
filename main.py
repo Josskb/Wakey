@@ -84,18 +84,14 @@ while True:
             if counter >= CLOSED_FRAMES:
                 pass  # No additional visual indicators needed here
 
-            # Add a warning message when eyes are closed for more than 3 seconds
-            if counter >= FPS * 3:  # 3 seconds
-                duration = time.time() - start_time
-                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                print(f"WARNING - Crise de narcolepsie potentielle : {timestamp} / durée : {duration:.2f} secondes")
-
         else:
             if eyes_closed:
                 end_time = time.time()
                 duration = end_time - start_time
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(f"⏱️  Durée yeux fermés : {duration:.2f} secondes\n")
+                if duration > 3:
+                    print("⚠️  Avertissement : Durée des yeux fermés supérieure à 3 secondes !")
 
                 # Ajout des données dans le CSV
                 with open(csv_filename, mode="a", newline="") as file:
