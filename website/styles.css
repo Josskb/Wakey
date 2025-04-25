@@ -1,0 +1,148 @@
+/* General Reset */
+body, h1, h2, h3, p, ul, ol, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f7ff; /* Light blue background */
+    color: #003366; /* Dark blue text */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+
+/* Links */
+a {
+    color: #007acc; /* Bright blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    background-color: #007acc; /* Bright blue background */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00509e; /* Darker blue on hover */
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for content */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    background-color: #00509e; /* Medium blue background */
+    color: white;
+    padding: 20px 0;
+    border-radius: 10px;
+}
+
+/* Style for calendar cells with "Crise potentielle" */
+.calendar-day.crise {
+    background-color: #ffcccc; /* Light red background */
+    color: #cc0000; /* Dark red text */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Calendar Container */
+#calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Calendar Table */
+#calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* Calendar Header (Days of the Week) */
+#calendar th {
+    background-color: #00509e; /* Medium blue */
+    color: white;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+}
+
+/* Calendar Cells (Days) */
+#calendar td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Empty Cells */
+#calendar td:empty {
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+/* Hover Effect for Days */
+#calendar td:hover:not(:empty) {
+    background-color: #e6f7ff; /* Light blue */
+}
+
+/* Highlighted Days with "Crise potentielle" */
+.calendar-day.crise {
+    background-color: #ffcccc; /* Light red background */
+    color: #cc0000; /* Dark red text */
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #calendar td {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    #calendar th {
+        font-size: 1rem;
+    }
+}

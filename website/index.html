@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header><h1>Welcome to Wakey</h1></header>
+<body>
+    
+    
+    <!-- Calendar Section -->
+    <div id="calendar">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                <!-- Calendar days will be dynamically generated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Day Details -->
+    <div id="day-details-modal" style="display: none;">
+        <div id="day-details-content">
+            <span id="close-modal">&times;</span>
+            <p id="day-details-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
