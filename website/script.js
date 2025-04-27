@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script loaded and DOM fully loaded.");
+    
     const calendarBody = document.getElementById("calendar-body");
     const modal = document.getElementById("day-details-modal");
     const modalText = document.getElementById("day-details-text");
@@ -45,10 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     // Fill the cell with the date
                     cell.innerHTML = date;
-                    cell.setAttribute("data-date", `${year}-${month + 1}-${date}`);
+                    const formattedDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+                    cell.setAttribute("data-date", formattedDate);
                     cell.classList.add("calendar-day");
-                    cell.addEventListener("click", () => showDayDetails(`${year}-${month + 1}-${date}`));
-                    date++;
+                    cell.addEventListener("click", () => showDayDetails(formattedDate));
+                    date++; // Increment the date only for valid days
                 }
     
                 row.appendChild(cell);
@@ -56,13 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
     
             calendarBody.appendChild(row);
         }
+        console.log("Calendar generated.");
     }
 
     // Function to load the CSV file and mark dates with "Crise potentielle"
     async function loadCSVAndMarkDates() {
         try {
-            const response = await fetch("../fermetures_yeux.csv");
+            const response = await fetch("./fermetures_yeux.csv");
+            if (!response.ok) {
+                throw new Error(`Failed to fetch CSV file: ${response.status} ${response.statusText}`);
+            }
             const csvText = await response.text();
+            console.log("CSV file loaded.");
             const rows = csvText.split("\n").slice(1); // Skip the header row
 
             rows.forEach((row) => {
@@ -74,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (tag === "Crise potentielle") {
                     const [date] = timestamp.split(" ");
                     const [year, month, day] = date.split("-");
-                    const formattedDate = `${year}-${parseInt(month)}-${parseInt(day)}`; // Match the `data-date` format
+                    const formattedDate = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
                     if (!crisisData[formattedDate]) {
                         crisisData[formattedDate] = [];
@@ -88,6 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             });
+
+            console.log("Crisis Data:", crisisData); // Debugging output
         } catch (error) {
             console.error("Error loading CSV file:", error);
         }
@@ -95,9 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to show details for a specific day
     function showDayDetails(date) {
+        console.log("Clicked date:", date);
+        console.log("Crisis data for date:", crisisData[date]); // Debugging output
+
         if (crisisData[date]) {
             const details = crisisData[date]
-                .map((crisis) => `Timestamp: ${crisis.timestamp}, Duration: ${crisis.duration}s`)
+                .map((crisis) => `A crisis occured at : ${crisis.timestamp}, and lasted for ${crisis.duration}`)
                 .join("<br>");
             modalText.innerHTML = details;
         } else {
