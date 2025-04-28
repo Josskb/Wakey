@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wakey</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<header><h1>Welcome to Wakey</h1></header>
+
 <body>
-    
-    
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#calendar">Calendar</a></li>
+            <li><a href="#analytics">Analytics</a></li>
+            <li><a href="#user-info">User Info</a></li>
+            <li><a href="#recent-crises">Recent Crises</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Welcome to Wakey</h1>
+    </header>
+
     <!-- Calendar Section -->
     <div id="calendar">
-        <h2 id="current-month"></h2> <!-- Placeholder for the current month -->
+        <h2 id="current-month"></h2>
         <table>
             <thead>
                 <tr>
@@ -39,14 +53,81 @@
         </div>
     </div>
 
+    <!-- Analytics Section -->
+    <section id="analytics" class="analytics-section">
+        <h2>Crisis Analytics</h2>
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>Crisis Duration Distribution</h3>
+                <canvas id="durationChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Crisis by Time of Day</h3>
+                <canvas id="timeOfDayChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>Crisis Trend Over Time</h3>
+                <canvas id="trendChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Weekly Pattern</h3>
+                <canvas id="weekdayChart"></canvas>
+            </div>
+        </div>
+        <div class="data-summary">
+            <h3>Summary Statistics</h3>
+            <div id="stats-container">
+                <div class="stat-box">
+                    <span class="stat-number" id="total-crises">0</span>
+                    <span class="stat-label">Total Crises</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="avg-duration">0</span>
+                    <span class="stat-label">Avg Duration (s)</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="max-duration">0</span>
+                    <span class="stat-label">Max Duration (s)</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="most-active-time">--</span>
+                    <span class="stat-label">Most Active Hour</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- User Information Section -->
     <div id="user-info" class="info-box">
         <h2>User Information</h2>
         <p><strong>Last Name:</strong> Meunier</p>
         <p><strong>First Name:</strong> Frédéric</p>
         <p><strong>Gender:</strong> Male</p>
-        <p><strong>Doctor's Name:</strong> Dr. Somla</p>
+        <p><strong>Doctor's Name:</strong> Dr. Soma</p>
         <p><strong>Duration of Follow-up:</strong> 27 days</p>
+    </div>
+
+    <!-- Recent Crises Section -->
+    <div id="recent-crises" class="info-box">
+        <h2>Recent Crises</h2>
+        <ul id="crises-list">
+            <!-- Recent crises will be dynamically populated here -->
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Wakey. All rights reserved.</p>
+    </footer>
+
+    <!-- Zoom Overlay for Graphs -->
+    <div id="zoom-overlay">
+        <div id="zoom-content">
+            <span id="close-zoom">&times;</span>
+            <!-- ici, on ajoutera dynamiquement un canvas avec JS -->
+        </div>
     </div>
 
     <script src="script.js"></script>
